@@ -1,0 +1,27 @@
+
+#data file
+*.mat
+Thumbs.db
+report.txt
+
+#directory
+src1210/
+src1210v2/
+src1213/
+src1213v2/
+src24v3_1/
+src24v3_1k/
+src42/
+src42v2/
+src42v3_1/
+src42v3_1k/
+src45/
+src45v2/
+src45v3_1/
+src45v3_1k/
+src54v3_1/
+src54v3_1k/
+src86/
+src86v2/
+src89/
+src89v2/

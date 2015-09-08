@@ -1,0 +1,30 @@
+%plot someone electrode, someone moving avg, someone avgerge input, someone algorithm 
+title_str='electrode 4 to 2 ECAP threshold (LPF freq=14K) algo=NGFICA';
+figure;hold all;
+ecap128_array=data2(1,5).data(1).ecap128_array;
+ecap256_array=data2(1,5).data(1).ecap256_array;
+filter_ecapICA32_array=data2(1,5).data(1).filter_ecapICA32_array;
+filter_ecapICA64_array=data2(1,5).data(1).filter_ecapICA64_array;
+ecap256Threshold=data2(1,1).ecap256Threshold;
+ecap128Threshold=data2(1,1).ecap128Threshold;
+ecapICA32Threshold=data2(1,5).ecapICA32Threshold;
+ecapICA64Threshold=data2(1,5).ecapICA64Threshold;
+plot(ecap256_array(1,:),ecap256_array(2,:),'*');
+plot(ecap128_array(1,:),ecap128_array(2,:),'^');
+plot(filter_ecapICA32_array(1,:),filter_ecapICA32_array(2,:),'o');
+plot(filter_ecapICA64_array(1,:),filter_ecapICA64_array(2,:),'+');
+i=1;
+while ecap128_array(2,i)<0.15,i=i+1; end
+point_threshold=i-1;
+i=1;
+p_filter_ecapICA32=polyfit(filter_ecapICA32_array(1,point_threshold:end),filter_ecapICA32_array(2,point_threshold:end),1);
+filter_ecapICA32_fit=polyval(p_filter_ecapICA32,filter_ecapICA32_array(1,point_threshold:end));
+plot(filter_ecapICA32_array(1,point_threshold:end),filter_ecapICA32_fit);
+xlabel('Current Level');ylabel('ECAP N1 P2 amplitude');
+title(title_str);
+legend('AltPola ECAP 256 samples','AltPola ECAP 128 samples','ICA 32 samples','ICA 64 samples','ICA64 curve fitting');
+str=['ECAP 256 threshold=' num2str(ecap256Threshold)]; text(25,1.4,str);
+str=['ECAP 128 threshold=' num2str(ecap128Threshold)]; text(25,1.3,str);
+str=['ICA 32 samples threshold=' num2str(ecapICA32Threshold)];text(25,1.2,str);
+str=['ICA 64 samples threshold=' num2str(ecapICA64Threshold)];text(25,1.1,str);
+axis([0,400,-0.2,2.0]);
