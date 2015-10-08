@@ -3,7 +3,7 @@
 *.mat
 *.asv
 Thumbs.db
-report.txt
+report*.txt
 
 #test prgram 
 
