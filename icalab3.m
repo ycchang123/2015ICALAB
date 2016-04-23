@@ -59,8 +59,7 @@ for i=1:length(data)
     %moving average ECAP1 signal
     [MaxVal,MaxIdx]=max(filter_ecapICA64(MaxStart:MaxEnd));
     [MinVal,MinIdx]=min(filter_ecapICA64(MinStart:MinEnd));
-    tmp_array=[cuLevel; abs(MaxVal-MinVal)];filter_ecapICA64_array=[filter_ecapICA64_array tmp_array]; 
-    
+    tmp_array=[cuLevel; abs(MaxVal-MinVal)];filter_ecapICA64_array=[filter_ecapICA64_array tmp_array];     
 end
 i=1;
 while ecap128_array(2,i)<0.15,i=i+1; end
@@ -90,6 +89,3 @@ data(1).ecap64Threshold=ecap64_threshold;data(1).ecapICA64Threshold=filter_ecapI
 data(1).ecap32_array=ecap32_array;data(1).ecap64_array=ecap64_array;
 data(1).ecap128_array=ecap128_array;data(1).ecap256_array=ecap256_array;
 data(1).filter_ecapICA32_array=filter_ecapICA32_array;data(1).filter_ecapICA64_array=filter_ecapICA64_array;
-
-
-
